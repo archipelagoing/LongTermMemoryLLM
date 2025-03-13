@@ -23,7 +23,12 @@ LongTermMemoryLLM/
 │   ├── credentials.json      # Google API credentials (ignored in git)
 │   ├── chroma_db/            # ChromaDB storage
 │   ├── venv/                 # Virtual environment
-│   ├── requirements.txt      # Python dependencies
+│   ├── requirements/         # Python dependencies
+│       ├── requirements-base.txt
+│       ├── requirements-linux.txt
+│       ├── requirements-mac.txt
+│       ├── requirements-windows.txt
+│       ├── requirements-gpu.txt
 │── frontend/
 │── README.md
 │── .gitignore
@@ -58,7 +63,12 @@ venv\Scripts\activate      # Windows
 
 ## 📌 3. Install Dependencies
 ```bash
-pip install -r requirements.txt
+# Linux/macOS users:
+chmod +x install-requirements.sh
+./install-requirements.sh
+
+# Windows users:
+install-requirements.bat
 ```
 
 ---
@@ -75,13 +85,13 @@ pip install -r requirements.txt
 python backend/vectorize_json.py
 ```
 
-✅ **Expected Output:**
+🚀 **Expected Output:**
 ```
 📂 Fetching JSON files from Google Drive...
-✅ Found 3 JSON files.
-⬇️ Downloading chat_log_01.json...
-✅ Embedded message: Hello, how are you?...
-✅ All embeddings stored in ChromaDB!
+🚀 Found 3 JSON files.
+🔽 Downloading chat_log_01.json...
+🚀 Embedded message: Hello, how are you?...
+🚀 All embeddings stored in ChromaDB!
 ```
 
 ---
@@ -91,7 +101,7 @@ python backend/vectorize_json.py
 python backend/main.py
 ```
 
-✅ **Expected Output:**
+🚀 **Expected Output:**
 ```
 INFO:     Uvicorn running on http://127.0.0.1:8000
 ```
@@ -107,7 +117,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000
    ```
 2. Find the **`/search`** endpoint.
 3. Click **"Try it out"**, enter `"Hello"`, and hit **"Execute"**.
-4. ✅ **Expected Response:**
+4. 🚀 **Expected Response:**
    ```json
    {
      "matches": [
@@ -124,7 +134,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000
 curl -X 'GET' 'http://127.0.0.1:8000/search/?query=Hello' -H 'accept: application/json'
 ```
 
-✅ **Expected Response:**
+🚀 **Expected Response:**
 ```json
 {
   "matches": [
@@ -140,11 +150,11 @@ curl -X 'GET' 'http://127.0.0.1:8000/search/?query=Hello' -H 'accept: applicatio
 ## 📌 8. Summary
 ✔ **Clone the repository** → `git clone <repo-url>`  
 ✔ **Set up a virtual environment** → `python3 -m venv venv && source venv/bin/activate`  
-✔ **Install dependencies** → `pip install -r requirements.txt`  
+✔ **Install dependencies** → `./install-requirements.sh` or `install-requirements.bat`  
 ✔ **Set up Google Drive API credentials** → `credentials.json`  
 ✔ **Fetch & store embeddings** → `python backend/vectorize_json.py`  
 ✔ **Start FastAPI server** → `python backend/main.py`  
-✔ **Query stored embeddings** using Swagger, or`curl`
+✔ **Query stored embeddings** using Swagger, or `curl`
 
 🚀 **You're all set!**
 
